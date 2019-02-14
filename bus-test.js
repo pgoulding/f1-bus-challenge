@@ -1,8 +1,8 @@
-const assert = require('chai').assert;
+var assert = require('chai').assert;
 
-const Bus = require('./bus')
+var Bus = require('./bus')
 
-describe('Bus', () => {
+describe('Bus', function() {
 
     it.skip('should be a function', function(){
         assert.isFunction(Bus);
@@ -24,6 +24,7 @@ describe('Bus', () => {
         var bus15 = new Bus(true, '15');
         var bus10 = new Bus(true, '10');
 
+        assert.equal(bus15.hasRoute, true);
         assert.equal(bus15.route, '15');
         assert.equal(bus10.hasRoute, true);
         assert.equal(bus10.route, '10');
@@ -35,16 +36,6 @@ describe('Bus', () => {
         assert.deepEqual(bus15.passengers, []);
     })
 
-    it.skip('should be able to pick up passengers', function() {
-        var bus44 = new Bus(true, '44');
-        var seventeenthAndLarimer = {boarding: ['Robbie', 'Mike', 'Louisa']}
-
-        bus44.makeStop(seventeenthAndLarimer);
-        
-        assert.equal(bus44.passengers.length, 3);
-        assert.deepEqual(bus44.passengers[1], 'Mike');
-    })
-
     it.skip('passengers should be able to request stops', function(){
         var bus6 = new Bus(true, '6');
 
@@ -53,6 +44,16 @@ describe('Bus', () => {
         bus6.requestStop();
         assert.equal(bus6.stopRequested, true)
 
+    })
+
+    it.skip('should be able to pick up passengers', function() {
+        var bus44 = new Bus(true, '44');
+        var seventeenthAndLarimer = {boarding: ['Robbie', 'Mike', 'Louisa']}
+
+        bus44.makeStop(seventeenthAndLarimer);
+        
+        assert.equal(bus44.passengers.length, 3);
+        assert.deepEqual(bus44.passengers[1], 'Mike');
     })
 
     it.skip('should only let off passengers if a stop is requested', function() {
